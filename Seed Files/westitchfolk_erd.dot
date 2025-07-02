@@ -1,0 +1,98 @@
+digraph WeStitchFolkERD {
+  rankdir=LR;
+  fontsize=12;
+  node [shape=box, style=filled, fillcolor=white];
+
+  subgraph cluster_Auth {
+    label="Auth Service (PostgreSQL)";
+    style=filled;
+    color=lightgrey;
+    users; roles; user_roles; user_sessions; user_addresses;
+    password_reset_tokens; email_verification_tokens; otp_logs;
+  }
+
+  subgraph cluster_Product {
+    label="Product Service (MySQL)";
+    style=filled;
+    color=lightgrey;
+    products; product_images; categories; brands; product_variants;
+    inventory; product_tags; product_tag_map;
+    inventory_reservations; inventory_adjustments;
+    product_audit_logs; bundle_products; product_availability;
+  }
+
+  subgraph cluster_Order {
+    label="Order Service (MySQL)";
+    style=filled;
+    color=lightgrey;
+    orders; order_items; shipping_addresses; billing_addresses;
+    carts; cart_items; shipping_methods; order_status_history;
+    delivery_tracking_logs; invoice_documents; order_cancellations;
+  }
+
+  subgraph cluster_Payment {
+    label="Payment Service (PostgreSQL/MongoDB)";
+    style=filled;
+    color=lightgrey;
+    payments; payment_attempts; payment_logs; payment_methods;
+    refunds; tax_details; bank_accounts; payouts;
+  }
+
+  subgraph cluster_Notification {
+    label="Notification Service (MongoDB)";
+    style=filled;
+    color=lightgrey;
+    notifications; email_templates; sms_templates;
+    notification_logs; user_notification_preferences;
+  }
+
+  subgraph cluster_Review {
+    label="Review Service (MongoDB)";
+    style=filled;
+    color=lightgrey;
+    product_reviews; review_replies; review_images; review_votes; review_flags;
+  }
+
+  subgraph cluster_Admin {
+    label="Admin/User Management (PostgreSQL)";
+    style=filled;
+    color=lightgrey;
+    admins; admin_roles; admin_activity_logs; audit_logs;
+    seller_profiles; user_reports; seller_documents; dashboard_widgets;
+  }
+
+  subgraph cluster_Shared {
+    label="Shared/Event Tables";
+    style=filled;
+    color=lightgrey;
+    event_logs; retry_queue; service_health; api_usage_stats; dead_letter_queue;
+  }
+
+  // Relationships
+  users -> orders;
+  users -> user_addresses;
+  orders -> order_items;
+  orders -> shipping_addresses;
+  orders -> billing_addresses;
+  order_items -> products;
+  products -> product_variants;
+  product_variants -> inventory;
+  products -> product_images;
+  products -> categories;
+  products -> brands;
+  products -> product_tags;
+  product_tags -> product_tag_map;
+  inventory -> inventory_reservations;
+  inventory -> inventory_adjustments;
+  orders -> payments;
+  payments -> payment_logs;
+  users -> product_reviews;
+  admins -> admin_activity_logs;
+  admins -> audit_logs;
+  orders -> invoice_documents;
+  orders -> order_status_history;
+  orders -> order_cancellations;
+  orders -> delivery_tracking_logs;
+  notifications -> notification_logs;
+  notifications -> user_notification_preferences;
+}
