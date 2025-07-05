@@ -1,0 +1,77 @@
+# ===============================
+# Node.js (backend microservices)
+# ===============================
+**/node_modules/
+**/dist/
+**/build/
+
+# ===============================
+# Environment files (sensitive)
+# ===============================
+**/.env
+**/.env.local
+**/.env.*.local
+
+# ===============================
+# Logs
+# ===============================
+logs/
+**/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===============================
+# OS/system files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# IDE/editor settings
+# ===============================
+.vscode/
+.idea/
+*.swp
+
+# ===============================
+# Angular (frontend)
+# ===============================
+**/angular*/.angular/
+**/angular*/.cache/
+**/angular*/coverage/
+
+# ===============================
+# React (frontend)
+# ===============================
+**/react*/node_modules/
+**/react*/build/
+**/react*/.env.local
+**/react*/.next/
+**/react*/.turbo/
+**/react*/.parcel-cache/
+
+# ===============================
+# Database dump / backups
+# ===============================
+*.sql
+*.sqlite
+*.dump
+*.bak
+
+# ===============================
+# Docker
+# ===============================
+**/.docker/
+**/docker-compose.override.yml
+
+# ===============================
+# Misc
+# ===============================
+*.tgz
+*.zip
+*.seed
+*.pid
+*.gz
+ß
