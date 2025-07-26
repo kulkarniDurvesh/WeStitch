@@ -4,7 +4,6 @@ const pool = require("../config/db");
 
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
-  console.log('hit');
   try {
     const hashed = await bcrypt.hash(password, 10);
     await pool.query(
